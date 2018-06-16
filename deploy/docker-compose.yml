@@ -1,0 +1,18 @@
+hub:
+  image: selenium/hub
+  ports:
+    - 2100:4444
+firefox:
+  image: selenium/node-firefox
+  links:
+    - hub
+chrome:
+  image: selenium/node-chrome
+  links:
+    - hub
+test:
+  image: registry.aliyuncs.com/denverdino/selenium-test
+  links:
+    - hub
+    - firefox
+    - chrome
